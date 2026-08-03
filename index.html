@@ -5,7 +5,7 @@
 <title>nandiky.com</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ===== CSS =====
+
 <style>
 * {
     margin: 0;
@@ -20,7 +20,7 @@ body {
     color: #fff;
 }
 
-/* ===== Video Background ===== */
+
 #bg-video,
 #extra-video {
     position: fixed;
@@ -42,21 +42,21 @@ body {
     z-index: -1;
 }
 
-/* ===== Particles ===== */
+
 #particles-js {
     position: fixed;
     inset: 0;
     z-index: -1;
 }
 
-/* ===== Popup ===== */
+
 .popup {
     position: fixed;
     inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: none;  /* remove blur */
+    backdrop-filter: none;  
     background: rgba(0, 0, 0, 0.0);
     z-index: 1000;
     transition: opacity 0.5s ease;
@@ -86,7 +86,7 @@ body {
     }
 }
 
-/* ===== OK Button Styles ===== */
+
 .ok-button {
     position: relative;
     padding: 18px 50px;
@@ -156,7 +156,7 @@ body {
     transform: rotate(90deg);
 }
 
-/* Button pulse animation */
+
 @keyframes pulse {
     0% {
         box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4),
@@ -177,7 +177,7 @@ body {
     animation: pulse 3s infinite;
 }
 
-/* ===== Music Controls ===== */
+
 .music-controls {
     position: fixed;
     bottom: 25px;
@@ -204,12 +204,12 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ===== Button Hover ===== */
+
 button:hover {
     opacity: .85;
 }
 
-/* ===== Smooth gradient animation ===== */
+
 .gradient {
     animation: gradientShift 12s linear infinite;
 }
@@ -223,7 +223,7 @@ button:hover {
 
 <body>
 
-<!-- ===== Video ===== -->
+
 <video id="bg-video" autoplay muted loop playsinline>
     <source src="main.mp4" type="video/mp4">
 </video>
@@ -232,15 +232,14 @@ button:hover {
     <source src="0118.mp4" type="video/mp4">
 </video>
 
-<!-- ===== Audio ===== -->
+
 <audio id="music">
     <source src="0115.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ===== Particles ===== -->
 <div id="particles-js"></div>
 
-<!-- ===== Popup with stylish OK button ===== -->
+
 <div class="popup" id="popup">
     <div class="popup-content">
         <button class="ok-button" onclick="startSyncExperience()">
@@ -252,10 +251,10 @@ button:hover {
     </div>
 </div>
 
-<!-- ===== JS ===== -->
+
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-/* ===== Variables ===== */
+
 const bgVideo     = document.getElementById('bg-video');
 const mainVideo   = document.getElementById('extra-video');
 const music       = document.getElementById('music');
@@ -266,30 +265,28 @@ let isPlaying = false;
 let syncInterval = null;
 let isFullscreenRequested = false;
 
-/* ===== Start ===== */
 function startSyncExperience() {
-    // fade out effect for popup
+  
     popup.style.opacity = '0';
     setTimeout(() => {
         popup.style.display = 'none';
     }, 500);
 
-    // switch videos
+    
     bgVideo.style.opacity = '0.3';
     mainVideo.style.opacity = '1';
 
-    // play video and music
+
     mainVideo.play().catch(e => console.log('Video play error:', e));
     music.play().catch(e => console.log('Audio play error:', e));
 
     isPlaying = true;
     controls.classList.add('show');
 
-    // start sync
     startSync();
 }
 
-/* ===== Sync Logic (optimized) ===== */
+
 function startSync() {
     clearInterval(syncInterval);
 
@@ -304,7 +301,7 @@ function startSync() {
     }, 250);
 }
 
-/* ===== Particles (optimized) ===== */
+
 const isMobile = window.innerWidth < 768;
 
 particlesJS("particles-js", {
@@ -335,9 +332,9 @@ particlesJS("particles-js", {
     retina_detect: true
 });
 
-/* ===== Page load effect ===== */
+
 window.addEventListener('load', () => {
-    // ensure popup shows smoothly
+    
     setTimeout(() => {
         popup.style.opacity = '1';
     }, 100);
@@ -346,15 +343,15 @@ window.addEventListener('load', () => {
 
 <script>
 mainVideo.addEventListener('ended', () => {
-    // reset both video and music
+   
     mainVideo.currentTime = 0;
     music.currentTime = 0;
 
-    // replay synced
+  
     mainVideo.play().catch(()=>{});
     music.play().catch(()=>{});
 });
 </script>
 
 </body>
-</html>>
+</html>
